@@ -27,27 +27,43 @@ public class NodePanel extends JPanel {
         
         // Draw the background image
         if (backgroundImage != null) {
-            // Cambia el tamaño deseado del fondo
             int backgroundWidth = getWidth();  // Ancho del panel
             int backgroundHeight = getHeight(); // Alto del panel
             g.drawImage(backgroundImage, 0, 0, backgroundWidth, backgroundHeight, this);
         }
         
-        // Draw a node
+        // Calculate node positions based on panel size
+        int node1X = (int) (getWidth() * 0.22); // 10% del ancho
+        int node1Y = (int) (getHeight() * 0.40); // 10% del alto
+
+        int node2X = (int) (getWidth() * 0.25); // 25% del ancho
+        int node2Y = (int) (getHeight() * 0.1); // 10% del alto
+
+        // Draw nodes
         g.setColor(Color.BLUE);
-        g.fillOval(50, 50, 30, 30); // Draw a node
-        g.drawString("Node 1", 55, 70); // Label the node
+        g.fillOval(node1X, node1Y, 10, 10); // Draw node 1
+        g.drawString("Node 1", node1X + 5, node1Y + 20); // Label node 1
         
-        // Draw another node
-        g.fillOval(150, 50, 30, 30); // Draw another node
-        g.drawString("Node 2", 155, 70); // Label the second node
+        g.fillOval(node2X, node2Y, 10, 10); // Draw node 2
+        g.drawString("Node 2", node2X + 5, node2Y + 20); // Label node 2
     }
+
+    
+
+    public static void drawNode(Graphics g, int x, int y, int size) {}
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Node Panel with JPG Background");
         NodePanel panel = new NodePanel();
         frame.add(panel);
-        frame.setSize(400, 400);
+        
+        // Make the JFrame resizable
+        frame.setResizable(true);
+        
+        // Set the JFrame size to full screen
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        frame.setSize(screenSize);
+        
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
