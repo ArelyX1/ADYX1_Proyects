@@ -1,1 +1,0 @@
-# ADYX1_Proyects
